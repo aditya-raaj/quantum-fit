@@ -1,0 +1,18 @@
+*{
+    padding: 0;
+    margin: 0;
+    height: 80vh;
+    width: 100%;
+ 
+    background-color: black;
+
+
+}
+main{
+background-image: url("PBL/PIC/back.jpg");
+height: 80vh;
+
+}
+main.box{
+
+}

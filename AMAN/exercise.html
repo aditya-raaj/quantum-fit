@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Quantum Fit - Exercise</title>
+    <style>
+        /* Reset some default styles */
+        body, h1, h2, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4; /* Default background color */
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        nav {
+            background-color: #007acc;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+        /* Additional Styles */
+
+        /* Customize the background color for the entire page */
+        body {
+            background-color: #e6f7ff; /* Light blue background color */
+        }
+
+        /* Customize the background color for the navigation bar */
+        nav {
+            background-color: #007acc; /* Dark blue navigation bar background color */
+        }
+
+        /* Customize the font size and weight for navigation links */
+        nav ul li a {
+            font-size: 18px; /* Increased font size for navigation links */
+            font-weight: normal; /* Normal font weight for navigation links */
+        }
+
+        /* Customize the background color for the calculator section */
+        .bmi-calculator {
+            background-color: #ffcc00; /* Yellow calculator background color */
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .bmi-calculator h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: bold; /* Bold text */
+        }
+
+        .bmi-calculator label {
+            display: block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .bmi-calculator input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            font-size: 18px; /* Increased font size */
+        }
+
+        .bmi-calculator button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold; /* Bold text */
+        }
+
+        .bmi-calculator button:hover {
+            background-color: #45a049;
+        }
+
+        #bmi-result {
+            font-size: 20px; /* Increased font size */
+            color: #333;
+            margin-top: 10px;
+            font-weight: bold; /* Bold text */
+        }
+
+        /* Styles for the second list */
+        .bmi-select {
+            margin: 20px;
+        }
+
+        .bmi-select ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .bmi-select li {
+            text-align: center;
+            padding: 15px;
+        }
+        .bmi-select h2 {
+    background-color: #007acc; /* Dark blue background color */
+    color: #fff; /* Text color */
+    padding: 10px; /* Adjust padding as needed */
+}
+        .bmi-select li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            display: block; /* Ensures the entire <li> area is clickable */
+        }
+
+        /* Change hyperlink color on hover */
+        .bmi-select li a:hover {
+            color: #333; /* Darker color on hover */
+        }
+
+        /* Different background colors for each cell */
+        .cell-color-1 {
+            background-color: #04b3b0; /* Light red */
+        }
+
+        .cell-color-2 {
+            background-color: #30b807; /* Light green */
+        }
+
+        .cell-color-3 {
+            background-color: #e4ef14; /* Light blue */
+        }
+
+        .cell-color-4 {
+            background-color: #f61509; /* Light yellow */
+        }
+
+        .cell-color-5 {
+            background-color: #f5930a; /* Light orange */
+        }
+        .cell-color-6 {
+            background-color: #4d2e03; /* Light orange */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+
+    <nav>
+        <div class="logo">
+            Quantum Fit
+        </div>
+        <ul>
+            <li><a href="test.html">HOME</a></li>
+            <li><a href="exercise.html">EXERCISE</a></li>
+            <li><a href="diet.html">DIET</a></li>
+            <li><a href="streak.html">STREAK</a></li>
+            <li><a href="http://localhost:8501/" target="_blank">CalorieM</a></li>
+        </ul>
+    </nav>
+
+    <!-- Exercise Content Goes Here -->
+    <center>
+        <!-- BMI Calculator Section -->
+        <section class="bmi-calculator">
+            <h2>BMI Calculator</h2>
+            <label for="height">Height (cm): </label>
+            <input type="number" id="height" placeholder="Enter height in cm">
+            <br>
+            <label for="weight">Weight (kg): </label>
+            <input type="number" id="weight" placeholder="Enter weight in kg">
+            <br>
+            <button onclick="calculateBMI()">Calculate BMI</button>
+            <br>
+            <p id="bmi-result"></p>
+        </section>
+    </center>
+    <img src="C:\Users\yashr\OneDrive\Desktop\PBL\PIC\bmi.jpg" width="100%">
+    <center>
+        <br><br><br><br><br><br>
+        <!-- Second List Section -->
+        <section class="bmi-select">
+            <h2>Select Your BMI</h2>
+            <ul>
+                <li class="cell-color-1">
+                    <a target="_blank" href="underw.html">UNDERWEIGHT</a>
+                </li>
+                <li class="cell-color-2">
+                    <a target="_blank" href="normal.html">NORMAL</a>
+                </li>
+                <li class="cell-color-3">
+                    <a target="_blank" href="overw.html">OVERWEIGHT</a>
+                </li>
+                <li class="cell-color-4">
+                    <a target="_blank" href="obese1.html">OBESE</a>
+                </li>
+                <li class="cell-color-5">
+                    <a target="_blank" href="obese2.html">OBESE II</a>
+                </li>
+                <li class="cell-color-6">
+                    <a target="_blank" href="obese3.html">OBESE III</a>
+                </li>
+            </ul>
+        </section>
+    </center>
+
+    <!-- Regards Section -->
+    <footer>
+        <div id="footer_info">
+            <p>&copy;Quantum Fit,2024</p>
+            <p><a href="about.html" style="color: white; text-decoration: none;" target="_blank">About Us | Contact Us</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function calculateBMI() {
+            var height = document.getElementById('height').value;
+            var weight = document.getElementById('weight').value;
+
+            if (height && weight) {
+                var bmi = (weight / ((height / 100) ** 2)).toFixed(2);
+                document.getElementById('bmi-result').innerHTML = `Your BMI is: ${bmi}`;
+            } else {
+                document.getElementById('bmi-result').innerHTML = 'Please enter valid height and weight';
+            }
+        }
+    </script>
+</body>
+
+</html>

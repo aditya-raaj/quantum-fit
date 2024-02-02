@@ -1,0 +1,97 @@
+/* Reset some default styles */
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e6f7ff; /* Light blue background color */
+    text-align: center;
+    margin-top: 50px;
+}
+
+nav {
+    background-color: #007acc; /* Dark blue navigation bar background color */
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Align items to the start and end */
+    align-items: center; /* Center items vertically */
+}
+
+nav .logo {
+    font-size: 24px;
+    font-weight: bold;
+    font-size: larger;
+    margin-right: auto; /* Move to the extreme left */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li:first-child {
+    margin-left: 0; /* No left margin for the first child */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: normal;
+}
+nav ul li a:hover {
+    background-color: #555;
+}
+
+/* Main Content */
+.main-content {
+    margin: 20px;
+}
+
+.welcome-section h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.user-reviews h2,
+.motivation-quotes h2,
+.health-tips h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.review p {
+    margin-bottom: 5px;
+}
+
+.health-tips ul {
+    list-style: none;
+    padding: 0;
+}
+
+.health-tips li {
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #87CEEB; /* Sky blue background color */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Video */
+video {
+    width: 100%;
+}

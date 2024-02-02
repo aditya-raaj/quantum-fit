@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        nav {
+            background-color: #007acc;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+
+        .calendar-container {
+            margin: 20px;
+        }
+
+        .stopwatch-container {
+            margin: 20px;
+        }
+
+        .count-tracker {
+            margin: 20px;
+            font-size: 80px;
+        }
+        /* styles.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin-top: 50px;
+}
+
+nav {
+    background-color: #007acc;
+    color: #fff;
+    padding: 10px 0;
+}
+
+nav .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+.calendar-container{
+    margin: 20px;
+    background-color: #f3eded;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.count-tracker {
+    margin: 20px;
+    background-color: #ffcc00;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+}
+.todo-list {
+    font-size: 50px;
+    font-weight: bold;
+    margin: 20px;
+    background-color: #c8c5c5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#streakCount {
+    font-size: 150px;
+    font-weight: bold;
+    color: #007acc;
+}
+
+#taskInput {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#taskList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.actions {
+    display: flex;
+}
+
+.remove-btn {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+    </style>
+    <title>Quantum Fit - Workout Tracker</title>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            &nbsp&nbsp; Quantum Fit
+        </div>
+        <ul>
+            <li><a href="test.html">HOME</a></li>
+            <li><a href="exercise.html">EXERCISE</a></li>
+            <li><a href="diet.html">DIET</a></li>
+            <li><a href="streak.html">STREAK</a></li>
+            <li><a href="http://localhost:8501/" target="_blank">CalorieM</a></li>
+        </ul>
+    </nav>
+
+    <!-- Calendar Section -->
+    <div class="calendar-container">
+        <h2>Calendar</h2>
+    
+        <!-- You can embed a calendar here using external plugins or your preferred method -->
+        <iframe src="https://calendar.google.com/calendar/embed?src=YOUR_PUBLIC_URL" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+    </div>
+    
+
+    
+
+    <!-- Count Tracker Section -->
+    <div class="count-tracker">
+        <h2>Streak Tracker</h2>
+        <p>Days of Workout Streak: <span id="streakCount">0</span></p>
+        <button onclick="increaseStreak()">Increment Streak</button>
+        <button onclick="resetStreak()">Reset Streak</button>
+    </div>
+    
+    <div class="todo-list">
+    <h1>To-Do List</h1>
+    <br>
+    <br>
+    <input type="text" id="taskInput" placeholder="Add a new task">
+    <ul id="taskList"></ul>
+</div>
+    <br><br><br><br><br><br>
+
+
+    <!-- Regards Section -->
+    <footer>
+        <div id="footer_info">
+            <p>&copy;Quantum Fit,2024</p>
+            <p><a href="about.html" style="color: white; text-decoration: none;" target="_blank">About Us | Contact Us</a></p>
+        </div>
+    </footer>
+
+
+<script>
+       
+        let streakCount = 0;
+
+        function increaseStreak() {
+            streakCount++;
+            document.getElementById('streakCount').innerText = streakCount;
+        }
+
+        function resetStreak() {
+            streakCount = 0;
+            document.getElementById('streakCount').innerText = streakCount;
+        }
+        const taskInput = document.getElementById('taskInput');
+        const taskList = document.getElementById('taskList');
+
+        // Add task function
+        function addTask() {
+            const taskText = taskInput.value.trim();
+
+            if (taskText !== '') {
+                const taskItem = document.createElement('li');
+                taskItem.className = 'task';
+
+                const taskTextElement = document.createElement('span');
+                taskTextElement.innerText = taskText;
+
+                const actionsDiv = document.createElement('div');
+                actionsDiv.className = 'actions';
+
+                const completeBtn = document.createElement('button');
+                completeBtn.innerText = 'Complete';
+                completeBtn.addEventListener('click', () => completeTask(taskItem));
+
+                const removeBtn = document.createElement('button');
+                removeBtn.innerText = 'Remove';
+                removeBtn.className = 'remove-btn';
+                removeBtn.addEventListener('click', () => removeTask(taskItem));
+
+                actionsDiv.appendChild(completeBtn);
+                actionsDiv.appendChild(removeBtn);
+
+                taskItem.appendChild(taskTextElement);
+                taskItem.appendChild(actionsDiv);
+
+                taskList.appendChild(taskItem);
+
+                taskInput.value = '';
+            }
+        }
+
+        // Complete task function
+        function completeTask(taskItem) {
+            taskItem.classList.toggle('completed');
+        }
+
+        // Remove task function
+        function removeTask(taskItem) {
+            taskList.removeChild(taskItem);
+        }
+
+        // Event listener for adding tasks
+        taskInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                addTask();
+            }
+        });
+    </script>
+</body>
+
+</html>
