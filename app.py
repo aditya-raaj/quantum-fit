@@ -7,6 +7,12 @@ from dotenv import load_dotenv
 load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
+# Access the API key
+api_key = os.getenv("GOOGLE_API_KEY")
+if not api_key:
+    raise ValueError("GOOGLE_API_KEY not found in environment variables")
+
+
 # Function to interact with the generative AI model
 def get_gemini_response(height, weight, goal, input_text):
     model = genai.GenerativeModel('gemini-1.5-flash')  # Use the correct model name
