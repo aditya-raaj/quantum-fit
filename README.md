@@ -69,8 +69,8 @@ quantum-fit/
 
   - Python 3.7 or higher
   - Dependencies (specified in requirements.txt):
-    - streamlit
-    - google-generativeai
-    - python-dotenv
+    - ```streamlit```
+    - ```google-generativeai```
+    - ```python-dotenv```
 
 ---
