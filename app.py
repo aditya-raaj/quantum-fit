@@ -39,7 +39,7 @@ def get_gemini_response(height, weight, goal, input_text):
 # Streamlit UI setup
 st.set_page_config(page_title="Quantum Fit", page_icon="💪🏼")    
 st.title("💪🏼 Quantum Fit")
-st.subheader("Your One-Stop Solution for Fitness Goals")
+st.subheader("AI-Powered Personalized Fitness Planner")
 
 # Input fields
 height = st.number_input("Enter your Height (in cm):", min_value=50, max_value=300, step=1, format="%d")
