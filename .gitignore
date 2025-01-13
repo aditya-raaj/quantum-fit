@@ -171,5 +171,6 @@ cython_debug/
 .pypirc
 
 
-# Environemt 
+# Environment
 .env
+

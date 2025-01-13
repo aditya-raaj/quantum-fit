@@ -23,14 +23,15 @@ def get_gemini_response(height, weight, goal, input_text):
     3. Also give a basic chart of amount of nutrients to consume per day according to the exercise ( i am from india so give food references according to it if required )
     3. Provide safety precautions for overall exercise.
 
-    Additional Instructions: Keep a similar formatting and dont use table
-
+    Additional Instructions:
+    1.Keep a similar formatting and dont use table
+    2.Use horizontal line as separators between different sections
     """
     response = model.generate_content([prompt])
     return response.text
 
 # Streamlit UI setup
-st.set_page_config(page_title="Quantum Fit", page_icon="💪🏼")
+st.set_page_config(page_title="Quantum Fit", page_icon="💪🏼")    
 st.title("💪🏼 Quantum Fit")
 st.subheader("Your One-Stop Solution for Fitness Goals")
 
