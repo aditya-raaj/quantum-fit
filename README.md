@@ -62,3 +62,15 @@ quantum-fit/
 ├── requirements.txt        # List of dependencies
 ├── .env                    # Environment variables (API key)
 └── README.md               # Project documentation (this file)
+```
+---
+
+## Requirements
+
+  - Python 3.7 or higher
+  - Dependencies (specified in requirements.txt):
+    - streamlit
+    - google-generativeai
+    - python-dotenv
+
+---
