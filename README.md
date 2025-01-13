@@ -1,6 +1,14 @@
-# Quantum Fit 💪🏼
-
+# Quantum Fit: AI-Powered Personalized Fitness Planner
 Quantum Fit is a Streamlit-based web application designed to help users achieve their fitness goals. By leveraging Google's Gemini AI (via `google.generativeai`), this app generates personalized weekly exercise plans and dietary recommendations based on user inputs such as height, weight, fitness goals, and preferences.
+
+---
+
+## **Preface**
+
+![](https://github.com/aditya-raaj/quantum-fit/blob/main/archive/Quantum%20Fit.png?raw=true)
+![](https://github.com/aditya-raaj/quantum-fit/blob/main/archive/Quantum%20Fit%20I.png?raw=true)
+![](https://github.com/aditya-raaj/quantum-fit/blob/main/archive/Quantum%20Fit%20II.png?raw=true)
+
 
 ---
 
@@ -74,3 +82,39 @@ quantum-fit/
     - ```python-dotenv```
 
 ---
+
+## Contribution
+Contributions are welcome! Please follow these steps to contribute:
+
+1.Fork the repository.
+
+2.Create a new branch:
+```bash
+      git checkout -b feature/your-feature-name
+```
+
+3.Make your changes and commit::
+```bash
+      git commit -m "Add your descriptive commit message"
+```
+
+4.Make your changes and commit::
+```bash
+      git push origin feature/your-feature-name
+```
+
+5.Open a pull request.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+## Disclaimer
+
+This app provides general fitness advice based on AI-generated recommendations. Always consult a healthcare professional or certified trainer before starting any exercise routine, especially if you have pre-existing conditions or injuries.
+
+  
