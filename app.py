@@ -2,68 +2,49 @@ import streamlit as st
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv
-from PIL import Image
 
+# Load environment variables
 load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-def get_gemini_response(input, image, prompt):
-    # Use the updated model name here
-    model = genai.GenerativeModel('gemini-1.5-flash')
-    response = model.generate_content([input, image[0], prompt])
+# Function to interact with the generative AI model
+def get_gemini_response(height, weight, goal, input_text):
+    model = genai.GenerativeModel('gemini-1.5-flash')  # Use the correct model name
+    prompt = f"""
+    You are an expert fitness coach. Your task is to analyze the following inputs:
+    - Height: {height} cm
+    - Weight: {weight} kg
+    - Goal: {goal} (e.g., Cutting, Bulking, Recomp)
+    
+    Based on these inputs:
+    1. Create a detailed, full-week exercise plan (Sunday to Saturday) based on a Push-Pull-Legs routine.
+    2. Include the calorie usage for each exercise in the plan.
+    3. Provide safety precautions for each exercise.
+
+    Additional Instructions: {input_text}
+    """
+    response = model.generate_content([prompt])
     return response.text
 
-def input_image_setup(uploaded_file):
-    # Check if a file has been uploaded
-    if uploaded_file is not None:
-        # Read the file into bytes
-        bytes_data = uploaded_file.getvalue()
+# Streamlit UI setup
+st.set_page_config(page_title="Quantum Fit", page_icon="💪🏼")
+st.title("💪🏼 Quantum Fit")
+st.subheader("Your One-Stop Solution for Fitness Goals")
 
-        image_parts = [
-            {
-                "mime_type": uploaded_file.type,  # Get the mime type of the uploaded file
-                "data": bytes_data
-            }
-        ]
-        return image_parts
+# Input fields
+height = st.number_input("Enter your Height (in cm):", min_value=50, max_value=300, step=1, format="%d")
+weight = st.number_input("Enter your Weight (in kg):", min_value=10, max_value=300, step=1, format="%d")
+goal = st.selectbox("What is your Goal?", ["Cutting", "Bulking", "Recomp"])
+input_text = st.text_input("Describe your fitness preferences or special requirements:")
+
+# Submit button
+if st.button("Help me with Exercises"):
+    if height and weight and goal:
+        try:
+            response = get_gemini_response(height, weight, goal, input_text)
+            st.subheader("Generated Exercise Plan")
+            st.markdown(f'<div style="background-color:#f9f9f9; padding:10px; border-radius:5px;">{response}</div>', unsafe_allow_html=True)
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
     else:
-        raise FileNotFoundError("No file uploaded")
-
-# Initialize the Streamlit app
-st.set_page_config(page_title="Food Calorie Meter", page_icon="🍏")
-
-
-
-
-
-st.title("Food Calorie Meter")
-
-input = st.text_input("Input Prompt: ", key="input")
-
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
-image = ""   
-if uploaded_file is not None:
-    image = Image.open(uploaded_file)
-    st.image(image, caption="Uploaded Image.", use_column_width=True)
-
-submit = st.button("Tell me the Total Calories")
-
-input_prompt = """
-You are an expert nutritionist. Your task is to analyze the food items shown in an image and calculate the total calories. Additionally, provide detailed information for each food item, including its calorie intake, in the following format:
-
-1. Item 1 - no. of calories
-2. Item 2 - no. of calories
-----
-
-Your model should take an image containing various food items as input and output the total calorie count, along with a detailed list of each food item and its respective calorie intake.
-
-Additionally, include both the PROS and CONS of consuming each food item, such as health benefits or potential risks.
-"""
-
-# If submit button is clicked
-if submit:
-    image_data = input_image_setup(uploaded_file)
-    response = get_gemini_response(input_prompt, image_data, input)
-
-    st.subheader("The Response is")
-    st.markdown(f'<div class="response-text">{response}</div>', unsafe_allow_html=True)
+        st.error("Please fill in all inputs to proceed.")
