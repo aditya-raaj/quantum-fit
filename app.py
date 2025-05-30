@@ -3,58 +3,70 @@ import google.generativeai as genai
 import os
 from dotenv import load_dotenv
 
-# Load environment variables
-load_dotenv()
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+# ------------------ Load API Key Securely ------------------ #
+if "GOOGLE_API_KEY" in st.secrets:
+    api_key = st.secrets["GOOGLE_API_KEY"]
+else:
+    load_dotenv()
+    api_key = os.getenv("GOOGLE_API_KEY")
 
-# Access the API key
-api_key = os.getenv("GOOGLE_API_KEY")
 if not api_key:
-    raise ValueError("GOOGLE_API_KEY not found in environment variables")
+    st.error("❌ GOOGLE_API_KEY not found. Please set it in Streamlit Secrets or .env.")
+    st.stop()
 
+genai.configure(api_key=api_key)
 
-# Function to interact with the generative AI model
+# ------------------ Gemini AI Function ------------------ #
 def get_gemini_response(height, weight, goal, input_text):
-    model = genai.GenerativeModel('gemini-1.5-flash')  # Use the correct model name
+    model = genai.GenerativeModel('gemini-1.5-flash')
     prompt = f"""
-    You are an expert fitness coach. Your task is to analyze the following inputs:
-    - Height: {height} cm
-    - Weight: {weight} kg
-    - Goal: {goal} (e.g., Cutting, Bulking, Recomp)
-    - Other Important Info: {input_text} (eg. for any allergy or preference or injury record)
-    
-    Based on these inputs:
-    1. Create a detailed, full-week exercise plan (Sunday to Saturday) based on a Push-Pull-Legs routine ( DONT SAY REPEAT LIKE THE PREVIOUS DAY GIVE DAY WISE IN DEPTH ANALYSIS ).
-    2. Include the calorie usage for each exercise in the plan.
-    3. Also give a basic chart of amount of nutrients to consume per day according to the exercise ( i am from india so give food references according to it if required )
-    3. Provide safety precautions for overall exercise.
+You are an expert fitness coach. Analyze the following inputs:
+- Height: {height} cm
+- Weight: {weight} kg
+- Goal: {goal}
+- Notes: {input_text}
 
-    Additional Instructions:
-    1.Keep a similar formatting and dont use table
-    2.Use horizontal line as separators between different sections
-    """
+Tasks:
+1. Create a detailed 7-day Push-Pull-Legs workout plan (no repetition of same description).
+2. Include estimated calorie usage per exercise.
+3. Provide a basic daily nutrient breakdown with Indian food references.
+4. Mention general safety tips.
+
+Format:
+- Use horizontal lines (---) to separate sections.
+- Avoid tables and keep formatting clean and readable.
+"""
     response = model.generate_content([prompt])
     return response.text
 
-# Streamlit UI setup
-st.set_page_config(page_title="Quantum Fit", page_icon="💪🏼")    
+# ------------------ Streamlit UI ------------------ #
+st.set_page_config(page_title="Quantum Fit", page_icon="💪🏼", layout="centered")
 st.title("💪🏼 Quantum Fit")
-st.subheader("AI-Powered Personalized Fitness Planner")
+st.markdown("### Your AI-Powered Personalized Fitness Planner")
+st.markdown("Get a **custom workout + nutrition plan** based on your stats and goals — powered by Google's Gemini AI.")
 
-# Input fields
-height = st.number_input("Enter your Height (in cm):", min_value=50, max_value=300, step=1, format="%d")
-weight = st.number_input("Enter your Weight (in kg):", min_value=10, max_value=300, step=1, format="%d")
-goal = st.selectbox("What is your Goal?", ["Cutting", "Bulking", "Recomp"])
-input_text = st.text_input("Describe your fitness preferences or special requirements :")
+# --- User Inputs --- #
+with st.form("fitness_form"):
+    col1, col2 = st.columns(2)
+    with col1:
+        height = st.number_input("Height (in cm):", min_value=50, max_value=300, step=1)
+    with col2:
+        weight = st.number_input("Weight (in kg):", min_value=10, max_value=300, step=1)
 
-# Submit button
-if st.button("Help me with Exercises"):
-    if height and weight and goal:
-        try:
-            response = get_gemini_response(height, weight, goal, input_text)
-            st.subheader("Generated Exercise Plan")
-            st.write(response)  # Use plain text display for the response
-        except Exception as e:
-            st.error(f"An error occurred: {e}")
+    goal = st.selectbox("Fitness Goal:", ["Cutting", "Bulking", "Recomp"])
+    input_text = st.text_area("Any fitness preferences, allergies, injuries, or dietary notes:")
+
+    submitted = st.form_submit_button("Generate My Plan")
+
+# --- Generate Plan --- #
+if submitted:
+    if not height or not weight:
+        st.error("Please enter both height and weight.")
     else:
-        st.error("Please fill in all inputs to proceed.")
+        with st.spinner("Generating your personalized plan... 💡"):
+            try:
+                response = get_gemini_response(height, weight, goal, input_text)
+                st.markdown("## 🏋🏼 Personalized Exercise & Nutrition Plan")
+                st.markdown(response)
+            except Exception as e:
+                st.error(f"An error occurred while generating your plan: {e}")
