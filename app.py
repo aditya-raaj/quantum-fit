@@ -7,6 +7,8 @@ import unicodedata
 import matplotlib.pyplot as plt
 import numpy as np
 import plotly.express as px
+import matplotlib.pyplot as plt
+
 
 # ------------------ Load API Key ------------------ #
 if "GOOGLE_API_KEY" in st.secrets:
